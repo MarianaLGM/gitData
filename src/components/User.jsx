@@ -9,6 +9,7 @@ export function User() {
     <>
     
       <h1>Datos de usuario</h1>
+  
       <ul>
         <li>Nombre: {dataApi.name}</li>
         <li>Usuario GitHub: {dataApi.login}</li>

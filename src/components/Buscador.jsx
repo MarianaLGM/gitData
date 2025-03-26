@@ -5,25 +5,12 @@ import { addUser } from '../redux/userSlice'
 export const Buscador = () => {
     const [username, setUserName]= useState("");
     const dispatch = useDispatch();
-    const user = useSelector((state) => state.user);
-    
-    const fetchGitHubUser = async () => {
-        try {
-          const response = await fetch(`https://api.github.com/users/${username}`);
-          if (!response.ok) {
-            throw new Error("Usuario no encontrado");
-          }
-          const data = await response.json();
-          dispatch(addUser(data)); // Guardamos los datos en Redux
-        } catch (error) {
-          console.error(error.message); // Imprime el error en la consola
-          alert(error.message); // Muestra un mensaje al usuario
-        }
-      };
+    const login = useSelector((state) => state.user.login);
+    const [getLogin, setGetLogin]= useState("");
 
-    useEffect(() => {
-        fetchGitHubUser()
-      }, []);
+    const handleChange = (e) => {
+        setGetLogin(e.target.value);  // Actualiza el estado con el valor ingresado
+    };
 
     return (
         <>
