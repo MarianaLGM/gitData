@@ -26,14 +26,11 @@ export const userSlice =createSlice({
         state.public_repos=public_repos;
         state.avatar_url= avatar_url;
         },
-        changeUser:(state,action)=>{
-        state.login = action.payload 
-        },
     },
 });
 
 
-export const{addUser,changeUser}=userSlice.actions
+export const{addUser}=userSlice.actions
 export default userSlice.reducer;
 
 
