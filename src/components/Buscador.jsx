@@ -5,8 +5,7 @@ import { addUser } from '../redux/userSlice'
 export const Buscador = () => {
     const [username, setUserName]= useState("");
     const dispatch = useDispatch();
-    const login = useSelector((state) => state.user.login);
-    const [getLogin, setGetLogin]= useState("");
+    const user = useSelector((state) => state.user);
 
     const handleChange = (e) => {
         setGetLogin(e.target.value);  // Actualiza el estado con el valor ingresado
