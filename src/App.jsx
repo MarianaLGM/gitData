@@ -11,7 +11,7 @@ const App = () => {
 
 
   useEffect (()=>{
- // búsqueda en la API con el nombre del Pokémon
+
   if (userName.trim()) {
   fetch(`https://api.github.com/users/${userName.toLowerCase()}`)
       .then((response) => {
