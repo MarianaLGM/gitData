@@ -1,5 +1,4 @@
 import { useSelector, useDispatch } from 'react-redux';
-//import { changeUser } from '../redux/userSlice';
 import { useState } from 'react';
 
 export function Buscador() {
@@ -12,13 +11,14 @@ export function Buscador() {
     };
 
     return (
-    <>
-    <input
-        type="text"
-        value={getLogin}
-        placeholder="Ingrese usuario GitHub"
-        onChange={(e) => (setGetLogin(e.target.value))}/>
-    <button onClick={(handleChange)}>Buscar</button>
-    </>
+        <>
+            <input
+                type="text"
+                value={getLogin}
+                placeholder="Ingrese usuario GitHub"
+                onChange={(e) => setGetLogin(e.target.value)} // Actualizamos el valor del input
+            />
+            <button onClick={handleChange}>Buscar</button>
+        </>
     );
 }
