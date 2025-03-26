@@ -9,6 +9,10 @@ const App = () => {
   const dispatch= useDispatch()
   const [userName, setUserName] = useState(''); // Estado para el nombre de usuario
 
+  const getUserName = (user) => {
+    setUserName(user); // Actualiza el nombre de usuario en el estado
+  };
+
   useEffect(() => {
     if (userName.trim()) {  // Solo hace la búsqueda si el nombre de usuario no está vacío
       fetch(`https://api.github.com/users/${userName.toLowerCase()}`)
@@ -18,13 +22,9 @@ const App = () => {
     }
   }, [userName, dispatch]); 
 
-  const handleSearch = (user) => {
-    setUserName(user); // Actualiza el nombre de usuario en el estado
-  };
-
   return (
     <>
-      <Buscador onSearch={handleSearch} />  
+      <Buscador setUserName={setUserName} />  
       <User /> 
     </>
   );

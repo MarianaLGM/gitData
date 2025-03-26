@@ -3,7 +3,7 @@ import { useState } from 'react';
 
 export function Buscador() {
     const dispatch = useDispatch();
-    const login = useSelector((state) => state.user.login);
+    //const login = useSelector((state) => state.user.login);
     const [getLogin, setGetLogin]= useState("");
 
     const handleChange = (e) => {
