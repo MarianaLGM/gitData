@@ -12,7 +12,7 @@ const initialState={
     login: null,
     followers: null,
     public_repos: null,
-    avatar_ur: null,
+    avatar_url: null,
 }
 export const userSlice =createSlice({
     name:"user",

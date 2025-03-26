@@ -2,42 +2,33 @@ import {User} from './components/User';
 import {Buscador} from './components/Buscador';
 import {useEffect, useState} from "react"
 import {useDispatch} from "react-redux"
+import {addUser} from "./redux/userSlice.js"
 import './App.css';
 
 const App = () => {
   const dispatch= useDispatch()
-  const [userName, setUserName]= useState("")
-  const [error, setError]= useState("")
+  const [userName, setUserName] = useState(''); // Estado para el nombre de usuario
 
-
-  useEffect (()=>{
-
-  if (userName.trim()) {
-  fetch(`https://api.github.com/users/${userName.toLowerCase()}`)
-      .then((response) => {
-      if (!response.ok) {
-          throw new Error("Usuario no encontrado");// ERROR para cuando metemos nombre que no está en API
-      }
-      return response.json();
-      })
-      .then((data) => {
-        dispatch(setUserName(data));
-      })
-      .catch((error) => {
-      setError(error.message); 
-      });
-    } else { // ERROR para cuando le damos a buscar sin haber metido nombre en el input
-    setError("Por favor, ingresa un nombre de usuario.");
+  useEffect(() => {
+    if (userName.trim()) {  // Solo hace la búsqueda si el nombre de usuario no está vacío
+      fetch(`https://api.github.com/users/${userName.toLowerCase()}`)
+        .then((res) => res.json())
+        .then((data) => dispatch(addUser(data)))
+        .catch((error) => console.error("Error fetching data:", error)); 
     }
-  })
+  }, [userName, dispatch]); 
+
+  const handleSearch = (user) => {
+    setUserName(user); // Actualiza el nombre de usuario en el estado
+  };
 
   return (
-  <>
-    <User/>
-    <Buscador/>
-  </>
+    <>
+      <Buscador onSearch={handleSearch} />  
+      <User /> 
+    </>
   );
-}
+};
 
 export default App;
 
