@@ -6,6 +6,20 @@ export const Buscador = () => {
     const [username, setUserName]= useState("");
     const dispatch = useDispatch();
     const user = useSelector((state) => state.user);
+    const fetchGitHubUser = async () => {
+        try {
+          const response = await fetch(`https://api.github.com/users/${username}`);
+          if (!response.ok) throw new Error("Usuario no encontrado");
+          const data = await response.json();
+          dispatch(addUser(data)); // Guardamos los datos en Redux
+        } catch (error) {
+          console.error(error.message);
+        }
+      };
+    
+      useEffect(() =>{
+        fetchGitHubUser()
+      }, [])
 
     const handleChange = (e) => {
         setGetLogin(e.target.value);  // Actualiza el estado con el valor ingresado
